@@ -1,20 +1,52 @@
 {% extends "layout.html" %}
 
 {% block content %}
-test content for forms
-<form method="POST" class="text-gray-400">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type='submit'>Search Store</button>
-</form>
+<div class="container mx-auto mt-10 p-8 bg-[#2b1e16] shadow-lg rounded-lg max-w-3xl">
+  <h1 class="text-4xl font-extrabold text-center text-amber-400 mb-8">
+    Find Your Favorite Chai Store
+  </h1>
 
-{% if stores %}
-  <h2>Stores Available</h2>
-  <ul>
-    {% for store in stores %}
-      <li> {{ store.name }} - {{ store.location }} </li>
-    {% endfor %}
-  </ul>
-{% endif %}
+  <form method="POST" class="space-y-6">
+    {% csrf_token %}
 
+    <div>
+      <label for="id_chai_variety" class="block text-lg font-semibold text-amber-300 mb-2">
+        Select Chai Variety
+      </label>
+      <select id="id_chai_variety" name="chai_variety"
+        class="w-full p-3 border border-amber-600 rounded-lg bg-[#3c2f28] text-amber-200 
+        focus:outline-none focus:ring-2 focus:ring-amber-500">
+        <option value="" disabled selected class="text-gray-400">
+          Choose a variety...
+        </option>
+        {% for variety in form.fields.chai_variety.queryset %}
+          <option value="{{ variety.id }}">{{ variety }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <button type="submit" 
+      class="w-full py-3 bg-amber-500 text-[#2b1e16] font-bold rounded-lg hover:bg-amber-600 transition-all">
+      Search Store
+    </button>
+  </form>
+
+  {% if stores %}
+    <div class="mt-10">
+      <h2 class="text-2xl font-semibold text-amber-300 mb-4">Available Stores</h2>
+      <ul class="space-y-4">
+        {% for store in stores %}
+          <li class="p-4 bg-[#3c2f28] rounded-lg shadow-md flex justify-between border border-amber-600">
+            <span class="font-medium text-lg text-amber-100">{{ store.name }}</span>
+            <span class="text-amber-400">{{ store.location }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% else %}
+    <p class="mt-10 text-center text-xl text-gray-400">
+      No stores found for the selected chai variety. Please try again!
+    </p>
+  {% endif %}
+</div>
 {% endblock content %}
