@@ -1,0 +1,39 @@
+{% load static tailwind_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - Chai Lovers</title>
+    <link rel="stylesheet" href="{% static 'css/about.css' %}" />
+    {% tailwind_css %}
+</head>
+<body class="bg-gray-900 text-white">
+
+    <!-- Navbar -->
+    <nav class="bg-gray-800 p-4 shadow-md">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <a href="{% url 'all_chai' %}" class="text-xl font-bold">Chai Lovers</a>
+            <div class="space-x-4">
+                <a href="{% url 'all_chai' %}" class="hover:text-gray-400">Chai Varieties</a>
+                <a href="{% url 'about' %}" class="hover:text-gray-400">About Us</a>
+                <a href="{% url 'contact' %}" class="hover:text-gray-400">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Section -->
+    <div class="max-w-4xl mx-auto p-6 mt-10">
+        <h1 class="text-4xl font-bold mb-4">About Us</h1>
+        <p class="mb-6">Welcome to Chai Lovers! We are passionate about bringing you the finest chai varieties crafted with love and tradition.</p>
+
+        <ul class="list-disc list-inside space-y-2">
+            <li>We believe in quality ingredients that enhance the flavor of every cup.</li>
+            <li>Our recipes are inspired by traditional methods passed down through generations.</li>
+            <li>Join our community of chai enthusiasts and share your experiences with us!</li>
+        </ul>
+    </div>
+
+</body>
+</html>

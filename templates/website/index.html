@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Home Page
+{% endblock title %}
+
+{% block content %}
+<div class="bg-gray-900">
+    <!-- Hero Section -->
+    <section class="flex flex-col items-center justify-center py-20 bg-gradient-to-r from-blue-800 to-purple-800 rounded-2xl">
+        <h1 class="text-5xl font-bold text-white mb-4">Welcome to Chai Lovers</h1>
+        <p class="text-lg text-gray-300 mb-8">Discover the finest chai varieties crafted with love.</p>
+        <a href="{% url 'all_chai' %}" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-6 rounded-lg transition duration-300">
+            Explore Chai Varieties
+        </a>
+    </section>
+
+    <!-- Features Section -->
+    <section class="max-w-6xl mx-auto py-16">
+        <h2 class="text-4xl font-bold text-center text-white mb-10">Why Choose Our Chai?</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-semibold text-orange-400 mb-2">Quality Ingredients</h3>
+                <p class="text-gray-300">We use only the best ingredients to ensure a rich and flavorful experience.</p>
+            </div>
+            <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-semibold text-orange-400 mb-2">Authentic Recipes</h3>
+                <p class="text-gray-300">Our chai recipes are crafted from traditional methods passed down through generations.</p>
+            </div>
+            <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-semibold text-orange-400 mb-2">Community Focused</h3>
+                <p class="text-gray-300">Join our community of chai lovers and share your experiences with us!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Chai Section -->
+    <section class="py-16 bg-gray-900">
+        <h2 class="text-4xl font-bold text-center text-white mb-10">Featured Chai Varieties</h2>
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for chai in chais %}
+                <div class="rounded overflow-hidden shadow-lg bg-gray-800">
+                    <img src="{{ chai.image.url }}" alt="{{ chai.name }}" class="w-full h-[200px] object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-xl mb-2">{{ chai.name }}</h3>
+                        <p class="text-gray-400">{{ chai.description|truncatewords:15 }}</p>
+                        <a href="{% url 'chai_detail' chai.id %}" class="mt-4 inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300">
+                            View Details
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="py-16 bg-gradient-to-r from-blue-800 to-purple-800 text-center rounded-3xl">
+        <h2 class="text-xl font-bold text-white mb-4">Join the Chai Revolution!</h2>
+        <p class="text-gray-200 mb-8">Sign up for exclusive offers and updates on our latest chai varieties.</p>
+        {% comment %} <a href="{% url 'admin' %}" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-6 rounded-lg transition duration=300">
+            Sign Up Now
+        </a> {% endcomment %}
+    </section>
+
+</div>
+
+{% endblock content %}

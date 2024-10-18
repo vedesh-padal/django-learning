@@ -1,0 +1,34 @@
+body {
+  background-color: #222222;
+  color: bisque;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 2em;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.navbar {
+  list-style-type: none;
+  padding: 0;
+  text-align: center;
+}
+
+.navbar li {
+  display: inline;
+  margin: 0 15px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #aaa;
+  font-weight: bold;
+}
+
+.navbar a:hover {
+  color: #007bff;
+}
